@@ -168,7 +168,7 @@ const diamondSpan = document.getElementById('diamondValue');
 const healthSpan = document.getElementById('healthValue');
 
 // ============================================================
-//  SISTEMA DE SONIDOS
+//  SISTEMA DE SONIDOS (con carpeta /audio)
 // ============================================================
 class SoundManager {
     constructor() {
@@ -191,7 +191,6 @@ class SoundManager {
                 this.sounds[name] = new Audio();
                 resolve();
             };
-            // Cargar el audio
             audio.load();
         });
     }
@@ -217,7 +216,6 @@ class SoundManager {
         if (!this.soundEnabled) return;
         if (this.sounds[name]) {
             try {
-                // Clonar para reproducir múltiples veces simultáneamente
                 const clone = this.sounds[name].cloneNode();
                 clone.volume = 0.5;
                 clone.play().catch(() => {});
@@ -256,37 +254,35 @@ class SoundManager {
 // Crear gestor de sonidos
 const soundManager = new SoundManager();
 
-// Cargar todos los sonidos
+// Cargar todos los sonidos (con carpeta /audio)
 async function loadAllSounds() {
     const soundFiles = {
-        'shot': 'shot.m4a',
-        'jump': 'jump.mp3',
-        'victory': 'victory.m4a',
-        'defeat': 'defeat.m4a'
+        'shot': 'audio/shot.m4a',
+        'jump': 'audio/jump.mp3',
+        'victory': 'audio/victory.m4a',
+        'defeat': 'audio/defeat.m4a'
     };
     
-    // Cargar efectos de sonido
     for (const [name, file] of Object.entries(soundFiles)) {
         await soundManager.loadSound(name, file);
     }
     
-    // Cargar música
-    await soundManager.loadMusic('music.mp3');
+    await soundManager.loadMusic('audio/music.mp3');
 }
 
 // ============================================================
-//  IMÁGENES
+//  IMÁGENES (con carpeta /images)
 // ============================================================
 const playerImg = new Image();
-playerImg.src = 'personaje.png';
+playerImg.src = 'images/personaje.png';
 const enemyImg = new Image();
-enemyImg.src = 'enemigo.png';
+enemyImg.src = 'images/enemigo.png';
 const bossImg = new Image();
-bossImg.src = 'jefe.png';
+bossImg.src = 'images/jefe.png';
 const sharkImg = new Image();
-sharkImg.src = 'tiburon.png';
+sharkImg.src = 'images/tiburon.png';
 const libelulaImg = new Image();
-libelulaImg.src = 'libelula.png';
+libelulaImg.src = 'images/libelula.png';
 
 // ============================================================
 //  VARIABLES GLOBALES
@@ -400,7 +396,6 @@ class Player {
             if (keys['ArrowUp'] && this.onGround) {
                 this.vy = this.jumpPower;
                 this.onGround = false;
-                // SONIDO DE SALTO
                 if (this.jumpSoundCooldown <= 0) {
                     soundManager.play('jump');
                     this.jumpSoundCooldown = 15;
@@ -446,7 +441,6 @@ class Player {
         if (this.invincible > 0) this.invincible--;
         healthSpan.textContent = this.health;
 
-        // Colisión con disparos del jefe
         for (let i = enemyBullets.length - 1; i >= 0; i--) {
             const eb = enemyBullets[i];
             if (eb.active && this.x < eb.x + eb.w && this.x + this.w > eb.x &&
@@ -467,7 +461,6 @@ class Player {
                 this.direction
             ));
             this.shootCooldown = 12;
-            // SONIDO DE DISPARO
             soundManager.play('shot');
         }
     }
@@ -1213,7 +1206,6 @@ function loadLevel(level) {
     mainMenu.classList.add('hidden');
     instructionsScreen.classList.add('hidden');
     
-    // Reproducir música al empezar el juego
     if (!soundManager.musicPlaying) {
         soundManager.playMusic();
     }
@@ -1568,7 +1560,7 @@ document.getElementById('winRestartBtn').addEventListener('click', () => {
 async function initGame() {
     // Cargar sonidos
     await loadAllSounds();
-    console.log('Sonidos cargados correctamente');
+    console.log('✅ Sonidos cargados correctamente');
     
     // Iniciar bucle del juego
     gameLoop();
@@ -1583,7 +1575,9 @@ function gameLoop() {
 // Iniciar todo
 initGame();
 
-console.log('Juego listo. Asegúrate de tener las imágenes y los archivos de sonido.');
+console.log('🎮 Juego listo. Asegúrate de tener:');
+console.log('📁 images/ - personaje.png, enemigo.png, jefe.png, tiburon.png, libelula.png');
+console.log('📁 audio/ - music.mp3, shot.m4a, jump.mp3, victory.m4a, defeat.m4a');
 </script>
 </body>
 </html>
