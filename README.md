@@ -1,7 +1,5 @@
 # 🔫 BLASTEROID
 
-![BLASTERIOD - Juego de acción y plataformas](https://via.placeholder.com/800x400?text=BLASTEROID)
-
 **BLASTEROID** es un juego de acción y plataformas desarrollado con HTML, CSS y JavaScript puro. Controla a un héroe que debe eliminar a todos los enemigos en 5 niveles cada vez más desafiantes, mientras recolecta gemas y esquiva peligros. ¡Enfréntate al jefe final y demuestra tu habilidad!
 
 ---
