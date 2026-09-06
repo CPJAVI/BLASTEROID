@@ -31,25 +31,24 @@
 ## 📂 Estructura del proyecto
 
 BLASTEROID/
+
 ├── index.html # Página principal
+
 ├── style.css # Estilos y diseño
+
 ├── config.js # Configuración global (canvas, imágenes, variables)
+
 ├── sound.js # Clase para gestión de sonidos
+
 ├── entities.js # Clases: Player, Bullet, Enemy, etc.
+
 ├── levels.js # Definición de los 5 niveles
+
 ├── main.js # Lógica principal del juego (bucle, eventos)
-├── images/ # Carpeta con los sprites
-│ ├── personaje.png
-│ ├── enemigo.png
-│ ├── jefe.png
-│ ├── tiburon.png
-│ └── libelula.png
+
+├── images/ # Carpeta con de imágenes
+
 └── audio/ # Carpeta con los efectos de sonido
-├── music.mp3
-├── shot.m4a
-├── jump.mp3
-├── victory.m4a
-└── defeat.m4a
 
 ---
 
