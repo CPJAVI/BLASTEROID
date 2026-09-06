@@ -325,10 +325,10 @@ class Enemy {
         const w = W(), h = H();
         switch(type) {
             case 'terrestre':
-                this.w = Math.min(50, w * 0.06);
-                this.h = Math.min(50, h * 0.08);
+                this.w = Math.min(60, w * 0.06);
+                this.h = Math.min(40, h * 0.08);
                 this.maxHealth = 3;
-                this.speed = 0.5;
+                this.speed = 1;
                 this.gravity = 0.3;
                 this.vx = 0; this.vy = 0;
                 this.onGround = false;
@@ -353,8 +353,8 @@ class Enemy {
                 this.patternTimer = 0;
                 break;
             case 'jefe':
-                this.w = Math.min(90, w * 0.1);
-                this.h = Math.min(110, h * 0.18);
+                this.w = Math.min(210, w * 0.1);
+                this.h = Math.min(140, h * 0.18);
                 this.maxHealth = 10;
                 this.speed = 1.5;
                 this.gravity = 0.3;
